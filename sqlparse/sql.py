@@ -152,6 +152,9 @@ class TokenList(Token):
     def __unicode__(self):
         return ''.join(unicode(x) for x in self.flatten())
 
+    def __iter__(self):
+        return self.tokens.__iter__()
+
     def _get_repr_name(self):
         return self.__class__.__name__
 
