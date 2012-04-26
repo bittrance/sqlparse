@@ -19,7 +19,7 @@ from sqlparse import filters
 from sqlparse import formatter
 
 
-def parse(sql):
+def parse(sql, preprocess=[], postprocess=[]):
     """Parse sql and return a list of statements.
 
     *sql* is a single string containting one or more SQL statements.
@@ -27,16 +27,20 @@ def parse(sql):
     Returns a tuple of :class:`~sqlparse.sql.Statement` instances.
     """
     stack = engine.FilterStack()
+    stack.preprocess.extend(preprocess)
+    stack.postprocess.extend(postprocess)
     stack.full_analyze()
     return tuple(stack.run(sql))
 
 
-def parsestream(stream):
-    """Pares sql statements from file-like object.
+def parsestream(stream, preprocess=[], postprocess=[]):
+    """Parse sql statements from file-like object.
 
     Returns a generator of Statement instances.
     """
     stack = engine.FilterStack()
+    stack.preprocess.extend(preprocess)
+    stack.postprocess.extend(postprocess)
     stack.full_analyze()
     return stack.run(stream)
 

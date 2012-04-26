@@ -462,6 +462,7 @@ KEYWORDS = {
     'UNLISTEN': tokens.Keyword,
     'UNNAMED': tokens.Keyword,
     'UNNEST': tokens.Keyword,
+    'UNSIGNED': tokens.Keyword,
     'UNTIL': tokens.Keyword,
     'UPPER': tokens.Keyword,
     'USAGE': tokens.Keyword,
